@@ -1,23 +1,23 @@
 //GLOBAL VARIABLES
 //**************************************************** */ 
 //Arrays and variables that hold data
-var wordOptions = ["deer", "monkey", "wolf", "tiger", "moose", "fox", "bear", "pelican"];
+const wordOptions = ["deer", "monkey", "wolf", "tiger", "moose", "fox", "bear", "pelican"];
 //blank array for chosen words
-var selectedWord = "";
-var lettersInWord =[];
+let selectedWord = "";
+let lettersInWord =[];
 //number of blank spaces on word guessing game
-var numBlanks = 0;
-var blankandSucGuess = [];
-var wrongLetters = [];
+let numBlanks = 0;
+let blankandSucGuess = [];
+let wrongLetters = [];
 
 //Game Counters
-var winCount = 0;
-var lossCount = 0;
-var guessesLeft = 9;
+let winCount = 0;
+let lossCount = 0;
+let guessesLeft = 9;
 //FUNCTIONS
 //**************************************************** */
 //function to random generate word
-function startGame () {
+startGame = () => {
     selectedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
     //splits arrays and shows them as individual words
     lettersInWord = selectedWord.split("");
@@ -32,7 +32,7 @@ function startGame () {
     blankandSucGuess = [];
 
     //Populate blanks and successes with number of letters in word
-    for (var i=0; i<numBlanks; i++) {
+    for (let i=0; i<numBlanks; i++) {
         blankandSucGuess.push("_");
     }
 
@@ -50,11 +50,11 @@ function startGame () {
     console.log(blankandSucGuess);
 }
 
-function checkLetters(letter) {
+checkLetters = (letter) => {
     
 
    //Checks if letter exists in word 
-    var isLetterInWord = false;
+    let isLetterInWord = false;
 
     for (var i=0; i<numBlanks; i++) {
         //if the selected word is in the letter then it is true
@@ -83,8 +83,8 @@ else {
 
 //Function to finish the game
 //funtion brings the guesses counter down
-function roundComplete() {
-    console.log("Win Count: " + winCount + " | Loss Count: " + lossCount + "| Gussess Left" + guessesLeft);
+roundComplete = () => {
+    console.log(`Win Count: ${winCount} | Loss Count: ${lossCount}| Gussess Left${guessesLeft}`);
 
     //Shows the player the stats 
     document.getElementById("numGuesses").innerHTML = guessesLeft;
@@ -120,8 +120,8 @@ startGame();
 //Register key clicks
 //can test this code with "alert(letterGuessed); or console.log" to see what key was clicked
 //keeps count of letters pressed and turns them to lower case
-document.onkeyup = function(event) {
-    var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
+document.onkeyup = event => {
+    const letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
     checkLetters(letterGuessed);
     roundComplete();
     console.log("letterGuessed");
